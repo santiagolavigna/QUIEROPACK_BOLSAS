@@ -1,0 +1,33 @@
+{    
+"coment":"Poner comentarios aca",   
+     
+"menues":[
+    {"name": "Guillotinado", "link":"?p=guillotinado|guillotinadoList", "icon":"glyphicon-download-alt"},
+    {"name": "Cartulinas +", "link":"#", "icon":"glyphicon-picture", "subMenus":[
+        {"name": "Gramaje", "link":"?p=gramaje|gramajeList"},  
+        {"name": "Flete", "link":"?p=flete|fleteList"},
+        {"name": "Cartulina", "link":"?p=cartulina|cartulinaList"}]
+    }, 
+    {"name": "Impresion", "link":"?p=impresion|impresionList", "icon":"glyphicon-print"},
+    {"name": "Bolsas", "link":"?p=bolsas|bolsasList", "icon":"glyphicon-gift"},
+    {"name": "Cordon/cinta", "link":"?p=cordoncinta|cordoncintaList", "icon":"glyphicon-random"},
+    {"name": "Fondo/refuerzo", "link":"?p=fondorefuerzo|fondorefuerzoList", "icon":"glyphicon-save"},
+    {"name": "Armado/troquelado", "link":"?p=armadotroquelado|armadotroqueladoList", "icon":"glyphicon-compressed"},
+    {"name": "Armado de bolsas", "link":"?p=armadobolsa|armadobolsaList", "icon":"glyphicon-send"},
+    {"name": "Barniz", "link":"?p=barniz|barnizList", "icon":"glyphicon-tint"},
+    {"name": "Acarreo", "link":"?p=acarreo|acarreoList", "icon":"glyphicon-plane"},
+    {"name": "Pegamento", "link":"?p=pegamento|pegamentoList", "icon":"glyphicon-tint"},
+    {"name": "Perforado", "link":"?p=perforado|perforadoList", "icon":"glyphicon-screenshot"},
+    {"name": "Empaquetado", "link":"?p=empaquetado|empaquetadoList", "icon":"glyphicon-envelope"},
+    {"name": "Calculos", "link":"?p=calculo|calculoList", "icon":"glyphicon-asterisk"},
+    {"name": "Adicionales", "link":"?p=adicionales|adicionalesList", "icon":"glyphicon-plus"},
+    {"name": "Control pegado bolsas", "link":"#", "icon":"glyphicon-tint", "subMenus":[
+        {"name": "Bolsa", "link":"?p=bolsa|bolsaList"},  
+        {"name": "Pegadoras", "link":"?p=pegadoras|pegadorasList"},
+        {"name": "Clientes", "link":"?p=clientes|clientesList"},
+        {"name": "Egresos(Pegadora)", "link":"?p=egresos|egresosList"},
+        {"name": "Ingresos(Fabrica)", "link":"?p=ingresos|ingresosList"},
+        {"name": "Control", "link":"?p=control|controlList"},
+        {"name": "Pagos", "link":"?p=pagos|pagosList"}]
+    }
+]}
