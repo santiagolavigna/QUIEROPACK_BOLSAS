@@ -11,7 +11,13 @@
 // Checkin What level user has permission to view this page
  page_require_level(1);
 //pull out all user form database
-$armtroquelado = find_guillotinado();
+$guillotinado = find_guillotinado();
+
+foreach($guillotinado as &$g){
+   $calculo_precio = (($g['precio_cartulina'] * $g['kilo']) * 5 ) / 100;
+   $g['precio'] = $calculo_precio/1000;
+}
+unset($g);
 
 ?>
 
@@ -25,7 +31,7 @@ $armtroquelado = find_guillotinado();
     </div>
 
     <div class="panel-body">
-        <?=hcTable($bdname,$armtroquelado,"id|nombre|kilo|corte|costo|precio")?>
+        <?=hcTable($bdname,$guillotinado,"id|nombre|kilo|corte|costo|precio")?>
     </div>
 
 </div>

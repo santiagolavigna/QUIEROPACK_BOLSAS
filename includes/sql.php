@@ -79,7 +79,7 @@ function get_join_triple_bolsa() {
      return find_by_sql("SELECT bolsas.id as id,bolsas.nombre, bolsas.largo as largo,bolsas.ancho as ancho,bolsas.fuelle as fuelle,bolsas.id_impresion as id_impresion,bolsas.id_cartulina as id_cartulina,"
              . " cartulina.id as id_c, cartulina.largo as cartulina_largo,cartulina.ancho as cartulina_ancho, cartulina.id_gramaje as cartulina_id_gramaje, cartulina.pliego as cartulina_pliego, cartulina.id_flete as cartulina_id_flete, "
              . "gramaje.id as id_gramaje, gramaje.nombre as gramaje_nombre,gramaje.gr as gr,gramaje.precio as gramaje_precio,"
-             . "CAST(bolsas.cant_bolsa_pliego  AS INT) as cant_pliegos, "
+             . "bolsas.cant_bolsa_pliego as cant_pliegos, "
              . "(  (((cartulina.largo/100)* (cartulina.ancho/100)* cartulina.pliego * (gramaje.gr * 0.001)  * 1.10 )*1000* gramaje.precio* ((flete.precio /100)+1) /1000)   /bolsas.cant_bolsa_pliego) as precio_cartulina FROM bolsas "
              . "inner join cartulina on bolsas.id_cartulina = cartulina.id "
              . "inner join gramaje on cartulina.id_gramaje = gramaje.id "
@@ -366,7 +366,17 @@ function find_all($table) {
 function find_guillotinado() {
    global $db;
 
-     return find_by_sql("SELECT id,nombre,kilo,corte,costo, cast((kilo*corte*costo )/division as decimal(10,3)) as precio FROM `gillotinado` WHERE 1");
+     return find_by_sql("SELECT g.id,g.nombre,g.kilo,g.corte,g.costo, (((gr.precio * (f.precio*0.01) + gr.precio ) + (gr.precio * (f.precio*0.01) + gr.precio ) * 0.10) ) precio_cartulina
+     FROM `gillotinado` g
+     inner join `bolsas` b on 
+     g.nombre = b.nombre 
+     inner join  `cartulina` c on
+     c.id = b.id_cartulina 
+     inner join  `gramaje` gr on
+     gr.id = c.id_gramaje 
+     inner join  `flete` f on
+     f.id  = c.id_flete 
+     WHERE 1");
    
 }
 

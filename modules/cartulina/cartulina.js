@@ -12,8 +12,25 @@ window.onload = function ( ) {
               $("#table-"+bdname+' tbody tr').each(function(i) {
     
                     total = parseFloat(((($(this).find("[data-columnid='Gramaje_precio']").text()*1))  * ( $(this).find("[data-columnid='Flete']").text() * 1 * 0.01 )) +  (($(this).find("[data-columnid='Gramaje_precio']").text()*1)),2);
+                    
+                    console.log("gramaje "+(($(this).find("[data-columnid='Gramaje_precio']").text()*1)))
+                    console.log("*")
+                    console.log("flete: "+( $(this).find("[data-columnid='Flete']").text() * 1 * 0.01 ))
+                    console.log("+")
+                    console.log("Gramaje otra vez")
+
+                    console.log("total: " + total)
+
+                    //TODO LUNES
+                    //SACAR ESTOS CALCULOS PARA METERLOS EN LA QUERY DEL GUILLOTINADO Y OBTENER EL PRECIO DE LA CARTULINA DE LA BOLSA
+                    
                     //obtenemos el porcentaje
                     sum_porcentaje = parseFloat(total * 0.10 ,2);
+
+                    console.log("sum porcentaje: "+sum_porcentaje) 
+
+                    console.log((total+sum_porcentaje).toFixed(2))
+
                     $(this).append('<td>$ '+(total+sum_porcentaje).toFixed(2)+'</td>');
                
                    /*    var nodo3 = $(this).find("[data-columnid='Precio_final']"); 

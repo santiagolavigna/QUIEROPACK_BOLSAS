@@ -1,4 +1,3 @@
-console.log("MEGA BUTTONS LOAD OK!!");
 //createButton crea botones basicos
 //createTableButton inserta botones basicos en cada renglon de una tabla
 

@@ -1,4 +1,3 @@
-console.log("PRINT BUTTON LOAD OK!!");
 //crea un boton para imprimir la pagina o div seleccionado
 
 function insertPrintButton($div){
