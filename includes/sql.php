@@ -844,14 +844,14 @@ function insertUpdateBBDD($TABLE,$DATA){
               }
               $q=substr($q,0,-2);
               $q.=' WHERE id="'.rj($DATA['id']).'";';
-              Utils::actualizaciones(print_r($q,true).'/n');
+              //Utils::actualizaciones(print_r($q,true).'/n');
         }
-           Utils::log(print_r($q,true).'/n');
+           //Utils::log(print_r($q,true).'/n');
         $isOK=$db->query($q);
-        Utils::log(print_r($q,true).'/n');
+        //Utils::log(print_r($q,true).'/n');
         
         if($isOK){
-            $session->msg("s","Regristro "+ $action +" con exito");
+            $session->msg("s","Regristro " . $action . " con exito");
         }
         
         return $isOK;

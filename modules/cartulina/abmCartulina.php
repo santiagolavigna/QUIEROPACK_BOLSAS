@@ -45,9 +45,7 @@
                 <strong><span></span><span>Gramaje</span></strong>
                     <?= hcSelectDobleEtiqueta("id_gramaje",$gramaje,"id","nombre","precio",$cod)?>   
                 
-                <strong><span></span><span>Guillotinado</span></strong>
-                    <?= hcSelectDobleEtiqueta("id_gillotinado",$guillotinado,"id","nombre","precio",$cod3)?>  
-       
+ 
                 <strong><span></span><span>Flete</span></strong>
                     <?= hcSelectDobleEtiquetaPorcentaje("id_flete",$flete,"id","nombre","precio",$cod2)?>    
                 <button type="submit" class="btn btn-primary"><?=$butonLabel?></button>
