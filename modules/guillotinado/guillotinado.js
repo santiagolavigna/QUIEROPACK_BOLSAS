@@ -21,13 +21,16 @@ window.onload = function ( ) {
                 
                 $('#table-gillotinado tbody tr').each(function(indice, elemento) {
           
-                  var saldo = $(this).find("[data-columnid='Precio']");
-                            var saldo_valor = (saldo.html() * 1);
-
-                               
-                                    saldo.empty();
-                                    saldo.append("<span class='label label-success'>"+saldo_valor.toFixed(3)+"</span>");
-                                    
+                  var price = $(this).find("[data-columnid='Precio']");
+                            var price_value = (price.html() * 1);                               
+                            price.empty();
+                            price.append("<span class='label label-success'>"+price_value.toFixed(3)+"</span>");
+                 
+                
+                var price_cart = $(this).find("[data-columnid='Precio_cartulina']");
+                            var price_cart_valor = (price_cart.html() * 1);                               
+                            price_cart.empty();
+                            price_cart.append("<span class='label label-success'>"+price_cart_valor.toFixed(3)+"</span>");
 
              
                         /*    fecha =  $(this).find("[data-columnid='Fecha_enviada']");

@@ -14,13 +14,11 @@
 $guillotinado = find_guillotinado();
 
 foreach($guillotinado as &$g){
-   $calculo_precio = (($g['precio_cartulina'] * $g['kilo']) * 5 ) / 100;
+   $calculo_precio = (($g['precio_cartulina'] * $g['kilo']) * (int)$user['porcentaje'] ) / 100;
    $g['precio'] = $calculo_precio/1000;
 }
+
 unset($g);
-
-
-
 ?>
 
 <div class="panel panel-default">
@@ -33,7 +31,7 @@ unset($g);
     </div>
 
     <div class="panel-body">
-        <?=hcTable($bdname,$guillotinado,"id|nombre|kilo|corte|costo|precio")?>
+        <?=hcTable($bdname,$guillotinado,"id|nombre|precio_cartulina|kilo|precio")?>
     </div>
 
 </div>

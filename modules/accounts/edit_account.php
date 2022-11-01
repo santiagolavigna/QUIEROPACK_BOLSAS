@@ -25,7 +25,8 @@
              $id = (int)$_SESSION['user_id'];
            $name = remove_junk($db->escape($_POST['name']));
        $username = remove_junk($db->escape($_POST['username']));
-            $sql = "UPDATE users SET name ='{$name}', username ='{$username}' WHERE id='{$id}'";
+       $porcentaje = remove_junk($db->escape($_POST['porcentaje']));
+            $sql = "UPDATE users SET name ='{$name}', username ='{$username}', porcentaje='{$porcentaje}' WHERE id='{$id}'";
     $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Cuenta actualizada. ");
@@ -82,6 +83,10 @@
             <div class="form-group">
                   <label for="username" class="control-label">Usuario</label>
                   <input type="text" class="form-control" name="username" value="<?=remove_junk(ucwords($user['username']))?>">
+            </div>
+            <div class="form-group">
+                  <label for="username" class="control-label">Porcentaje</label>
+                  <input type="text" class="form-control" name="porcentaje" value="<?=remove_junk(ucwords($user['porcentaje']))?>">
             </div>
             <div class="form-group clearfix">
                     <a href="?p=accounts|change_password" title="change password" class="btn btn-danger pull-right">Cambiar contraseña</a>
