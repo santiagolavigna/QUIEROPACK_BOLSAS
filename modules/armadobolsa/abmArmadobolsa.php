@@ -18,8 +18,27 @@
     $butonLabel = 'Actualizar '.$generic_name;
   }
 
+    
+$d = find_all('dolar');
+  
+//get dolar value
+  foreach($d as $dat){
+      $dolar = $dat['precio_armado_bolsa'];
+      break;
+  }
+
 ?>
 <div class="panel panel-default">
+
+<div class="panel-heading clearfix">
+                <strong>
+                 <span class="glyphicon glyphicon-usd pull-left"></span>   
+                   <span class="pull-left">Precio Dolar armado bolsa actual :   &nbsp;&nbsp;</span>
+                     <button name="update_dolar_bolsa" class="btn btn-success pull-right">Actualizar precio dolar (dolar armado bolsa)</button>
+                      &nbsp;&nbsp;
+                  <input type="number" step=".01" class="pull-left" name="value_dolar_bolsa" value="<?php echo $dolar ?>">
+               </strong>
+          </div>
 
     <div class="panel-heading">
         <strong><span class="glyphicon glyphicon-th"></span><span><?=$page_title?></span></strong>
@@ -33,7 +52,8 @@
 
             <div class="col-md-6">
                 <?=hcSimpleInput("nombre",$us,"fg|lab|ph:Nombre armado bolsa...")?>
-                <?=hcSimpleInput("precio",$us,"fg|lab|num|req")?>
+                <?=hcSimpleInput("centimetros",$us,"fg|lab|num|req")?>
+                
                 <button type="submit" class="btn btn-primary"><?=$butonLabel?></button>
             </div>    
       

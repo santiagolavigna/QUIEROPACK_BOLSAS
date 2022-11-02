@@ -11,7 +11,7 @@
 // Checkin What level user has permission to view this page
  page_require_level(1);
 //pull out all user form database
-$armtroquelado = find_all($bdname);
+$armadoBolsa = find_armadoBolsaList($bdname);
 ?>
 
 <div class="panel panel-default">
@@ -24,7 +24,7 @@ $armtroquelado = find_all($bdname);
     </div>
 
     <div class="panel-body">
-        <?=hcTable($bdname,$armtroquelado)?>
+        <?=hcTable($bdname,$armadoBolsa)?>
     </div>
 
 </div>

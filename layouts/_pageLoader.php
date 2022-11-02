@@ -3,7 +3,7 @@
   echo '<div id=msgBlock class="row"> <div class="col-md-12">'.display_msg($session->msg()).'</div></div>';
     //SI SE RECIBE m=modulo, carga php desde el modulo indicado
     if (isset($onlyModule)){
-
+      
       if (file_exists('modules'.DS.$onlyModule.DS.$onlyPage.'.php')) 
           include_once('modules'.DS.$onlyModule.DS.$onlyPage.'.php');
       else print "En el MODULO *".$onlyModule."* no pudo localizarse -".$onlyPage."-";

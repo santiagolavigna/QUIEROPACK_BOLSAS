@@ -20,6 +20,19 @@
     
 }
 
+function update_dolar_bolsa($dolar){
+    
+  global $db;
+        $query  = "UPDATE `dolar` SET `precio_armado_bolsa`='{$dolar}' WHERE id = '99'";
+        if($db->query($query)){
+            return "true";
+        }else{
+            return "false";
+        }
+  
+  
+}
+
 function update_kg($kg){
     
      global $db;
@@ -363,6 +376,14 @@ function find_all($table) {
    }
 }
 
+function find_armadoBolsaList($table) {
+  global $db;
+  if(tableExists($table))
+  {
+    return find_by_sql("SELECT arm.id, arm.nombre, arm.centimetros,d.precio_armado_bolsa dolar, cast(( (arm.centimetros/100 ) * 1000 * d.precio_armado_bolsa) /1000 as decimal(10,3)) precio FROM ".$db->escape($table)." arm INNER JOIN dolar d on 1 = 1");
+  }
+}
+
 function find_guillotinado() {
    global $db;
 
@@ -412,6 +433,14 @@ function find_impresiones()
 function find_all_calculos() {
    global $db;
    $user = current_user();
+   
+   $d = find_all('dolar');
+  
+//get dolar value
+  foreach($d as $dat){
+      $dolar = $dat['precio_armado_bolsa'];
+      break;
+  }
 
 return find_by_sql("SELECT 
 cl.id, 
@@ -430,11 +459,11 @@ gramaje.precio as gramaje1,
 car.pliego as pliego1,
 k.precio as precio_kg,
                                                                                    
-((  (((car.largo/100)* (car.ancho/100)* car.pliego * (gramaje.gr * 0.001)  * 1.10 )*1000* gramaje.precio*  ((flete.precio /100)+1) /1000)   /b.cant_bolsa_pliego)                                + atr.precio + cc.precio + fr.precio + ab.precio + ((k.precio * d.precio * p.cantidad * ( (p.porcentaje / 100)+1   )) / 1000) + pf.precio + e.precio + ac.precio + cast(    ( ( ( (((gramaje.precio * (flete.precio*0.01) + gramaje.precio ) + (gramaje.precio * (flete.precio*0.01) + gramaje.precio ) * 0.10) ) * gi.kilo) * {$user['porcentaje']} ) / 100 ) / 1000   as decimal(10,3)) ) as lisa,
-((  (((car.largo/100)* (car.ancho/100)* car.pliego * (gramaje.gr * 0.001)  * 1.10 )*1000* gramaje.precio*  ((flete.precio /100)+1) /1000)   /b.cant_bolsa_pliego)+  ba.precio + (im.precio * 1)  + atr.precio + cc.precio + fr.precio + ab.precio + ((k.precio * d.precio * p.cantidad * ( (p.porcentaje / 100)+1   )) / 1000) + pf.precio + e.precio + ac.precio + cast(    ( ( ( (((gramaje.precio * (flete.precio*0.01) + gramaje.precio ) + (gramaje.precio * (flete.precio*0.01) + gramaje.precio ) * 0.10) ) * gi.kilo) * {$user['porcentaje']} ) / 100 ) / 1000   as decimal(10,3)) ) as 1color,
-((  (((car.largo/100)* (car.ancho/100)* car.pliego * (gramaje.gr * 0.001)  * 1.10 )*1000* gramaje.precio*  ((flete.precio /100)+1) /1000)   /b.cant_bolsa_pliego)+  ba.precio + (im.precio * 2)  + atr.precio + cc.precio + fr.precio + ab.precio + ((k.precio * d.precio * p.cantidad * ( (p.porcentaje / 100)+1   )) / 1000) + pf.precio + e.precio + ac.precio + cast(    ( ( ( (((gramaje.precio * (flete.precio*0.01) + gramaje.precio ) + (gramaje.precio * (flete.precio*0.01) + gramaje.precio ) * 0.10) ) * gi.kilo) * {$user['porcentaje']} ) / 100 ) / 1000   as decimal(10,3)) ) as 2colores,
-((  (((car.largo/100)* (car.ancho/100)* car.pliego * (gramaje.gr * 0.001)  * 1.10 )*1000* gramaje.precio*  ((flete.precio /100)+1) /1000)   /b.cant_bolsa_pliego)+  ba.precio + (im.precio * 3)  + atr.precio + cc.precio + fr.precio + ab.precio + ((k.precio * d.precio * p.cantidad * ( (p.porcentaje / 100)+1   )) / 1000) + pf.precio + e.precio + ac.precio + cast(    ( ( ( (((gramaje.precio * (flete.precio*0.01) + gramaje.precio ) + (gramaje.precio * (flete.precio*0.01) + gramaje.precio ) * 0.10) ) * gi.kilo) * {$user['porcentaje']} ) / 100 ) / 1000   as decimal(10,3)) ) as 3colores,
-((  (((car.largo/100)* (car.ancho/100)* car.pliego * (gramaje.gr * 0.001)  * 1.10 )*1000* gramaje.precio*  ((flete.precio /100)+1) /1000)   /b.cant_bolsa_pliego)+  ba.precio + (im.precio * 4)  + atr.precio + cc.precio + fr.precio + ab.precio + ((k.precio * d.precio * p.cantidad * ( (p.porcentaje / 100)+1   )) / 1000) + pf.precio + e.precio + ac.precio + cast(    ( ( ( (((gramaje.precio * (flete.precio*0.01) + gramaje.precio ) + (gramaje.precio * (flete.precio*0.01) + gramaje.precio ) * 0.10) ) * gi.kilo) * {$user['porcentaje']} ) / 100 ) / 1000   as decimal(10,3)) ) as 4colores,
+((  (((car.largo/100)* (car.ancho/100)* car.pliego * (gramaje.gr * 0.001)  * 1.10 )*1000* gramaje.precio*  ((flete.precio /100)+1) /1000)   /b.cant_bolsa_pliego)                                + atr.precio + cc.precio + fr.precio + cast(( (ab.centimetros/100 ) * 1000 * $dolar) /1000 as decimal(10,3))  + ((k.precio * d.precio * p.cantidad * ( (p.porcentaje / 100)+1   )) / 1000) + pf.precio + e.precio + ac.precio + cast(    ( ( ( (((gramaje.precio * (flete.precio*0.01) + gramaje.precio ) + (gramaje.precio * (flete.precio*0.01) + gramaje.precio ) * 0.10) ) * gi.kilo) * {$user['porcentaje']} ) / 100 ) / 1000   as decimal(10,3)) ) as lisa,
+((  (((car.largo/100)* (car.ancho/100)* car.pliego * (gramaje.gr * 0.001)  * 1.10 )*1000* gramaje.precio*  ((flete.precio /100)+1) /1000)   /b.cant_bolsa_pliego)+  ba.precio + (im.precio * 1)  + atr.precio + cc.precio + fr.precio + cast(( (ab.centimetros/100 ) * 1000 * $dolar) /1000 as decimal(10,3))  + ((k.precio * d.precio * p.cantidad * ( (p.porcentaje / 100)+1   )) / 1000) + pf.precio + e.precio + ac.precio + cast(    ( ( ( (((gramaje.precio * (flete.precio*0.01) + gramaje.precio ) + (gramaje.precio * (flete.precio*0.01) + gramaje.precio ) * 0.10) ) * gi.kilo) * {$user['porcentaje']} ) / 100 ) / 1000   as decimal(10,3)) ) as 1color,
+((  (((car.largo/100)* (car.ancho/100)* car.pliego * (gramaje.gr * 0.001)  * 1.10 )*1000* gramaje.precio*  ((flete.precio /100)+1) /1000)   /b.cant_bolsa_pliego)+  ba.precio + (im.precio * 2)  + atr.precio + cc.precio + fr.precio + cast(( (ab.centimetros/100 ) * 1000 * $dolar) /1000 as decimal(10,3))  + ((k.precio * d.precio * p.cantidad * ( (p.porcentaje / 100)+1   )) / 1000) + pf.precio + e.precio + ac.precio + cast(    ( ( ( (((gramaje.precio * (flete.precio*0.01) + gramaje.precio ) + (gramaje.precio * (flete.precio*0.01) + gramaje.precio ) * 0.10) ) * gi.kilo) * {$user['porcentaje']} ) / 100 ) / 1000   as decimal(10,3)) ) as 2colores,
+((  (((car.largo/100)* (car.ancho/100)* car.pliego * (gramaje.gr * 0.001)  * 1.10 )*1000* gramaje.precio*  ((flete.precio /100)+1) /1000)   /b.cant_bolsa_pliego)+  ba.precio + (im.precio * 3)  + atr.precio + cc.precio + fr.precio + cast(( (ab.centimetros/100 ) * 1000 * $dolar) /1000 as decimal(10,3))  + ((k.precio * d.precio * p.cantidad * ( (p.porcentaje / 100)+1   )) / 1000) + pf.precio + e.precio + ac.precio + cast(    ( ( ( (((gramaje.precio * (flete.precio*0.01) + gramaje.precio ) + (gramaje.precio * (flete.precio*0.01) + gramaje.precio ) * 0.10) ) * gi.kilo) * {$user['porcentaje']} ) / 100 ) / 1000   as decimal(10,3)) ) as 3colores,
+((  (((car.largo/100)* (car.ancho/100)* car.pliego * (gramaje.gr * 0.001)  * 1.10 )*1000* gramaje.precio*  ((flete.precio /100)+1) /1000)   /b.cant_bolsa_pliego)+  ba.precio + (im.precio * 4)  + atr.precio + cc.precio + fr.precio + cast(( (ab.centimetros/100 ) * 1000 * $dolar) /1000 as decimal(10,3))  + ((k.precio * d.precio * p.cantidad * ( (p.porcentaje / 100)+1   )) / 1000) + pf.precio + e.precio + ac.precio + cast(    ( ( ( (((gramaje.precio * (flete.precio*0.01) + gramaje.precio ) + (gramaje.precio * (flete.precio*0.01) + gramaje.precio ) * 0.10) ) * gi.kilo) * {$user['porcentaje']} ) / 100 ) / 1000   as decimal(10,3)) ) as 4colores,
 (  (((car.largo/100)* (car.ancho/100)* car.pliego * (gramaje.gr * 0.001)  * 1.10 )*1000* gramaje.precio* ((flete.precio /100)+1) /1000)   /b.cant_bolsa_pliego) as precio_final_cartulina
                                                                                         
 
