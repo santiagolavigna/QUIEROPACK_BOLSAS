@@ -17,3 +17,7 @@ ALTER TABLE quieropack_bolsas.dolar ADD precio_armado_bolsa decimal(25,2) DEFAUL
 ALTER TABLE quieropack_bolsas.armadobolsa ADD centimetros INT DEFAULT 1 NOT NULL;
 
 ALTER TABLE quieropack_bolsas.armadobolsa CHANGE centimetros centimetros int DEFAULT 1 NOT NULL AFTER nombre;
+
+ALTER TABLE quieropack_bolsas.dolar MODIFY COLUMN precio_armado_bolsa decimal(25,3) DEFAULT 150.00 NOT NULL;
+
+//querys anteriores agregadas en produccion
