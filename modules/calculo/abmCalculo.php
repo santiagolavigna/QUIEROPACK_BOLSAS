@@ -16,7 +16,7 @@
   $pegamentos = find_all('pegamentos');
   $armadotroquelado = find_all('armadotroquelado');
   $cordoncinta = find_all('cordoncinta');
-  $armadobolsa = find_all('armadobolsa');
+  $armadobolsa = find_armadoBolsaList('armadobolsa');
   $acarreo = find_all('acarreo');
   $barniz = find_all('barniz');
   $impresion = find_all('impresion');

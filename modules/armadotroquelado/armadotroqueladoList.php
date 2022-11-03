@@ -14,7 +14,7 @@ $armtroquelado = find_all('armadotroquelado');
         <strong>
             <span class="glyphicon glyphicon-th"></span> <span>armado/troquelado</span>
         </strong>
-        <a href="?p=armadotroquelado|abmarmadotroquelado" class="btn btn-info pull-right">Agregar armado/troquelado</a>
+        <a href="?p=armadotroquelado|abmArmadotroquelado" class="btn btn-info pull-right">Agregar armado/troquelado</a>
     </div>
 
     <div class="panel-body">
